@@ -1,0 +1,255 @@
+libquvi (0.9.4-1) UNRELEASED; urgency=medium
+
+  * update
+
+ -- Debian QA Group <packages@qa.debian.org>  Wed, 25 May 2022 02:50:44 -0400
+
+libquvi (0.9.4-1) unstable; urgency=medium
+
+  * QA upload.
+  * Upload to unstable.
+
+ -- Boyuan Yang <byang@debian.org>  Thu, 30 Sep 2021 21:00:58 -0400
+
+libquvi (0.9.4-1~exp2) experimental; urgency=medium
+
+  * QA upload.
+  * Rebuild all archs on buildd.
+  * debian/patches/0005: Update patch to make the build reproducible.
+    (Closes: #834945)
+
+ -- Boyuan Yang <byang@debian.org>  Sun, 19 Sep 2021 16:41:23 -0400
+
+libquvi (0.9.4-1~exp1) experimental; urgency=medium
+
+  * QA upload.
+  * New upstream release.
+  * Rename binary package name following upstream:
+    libquvi-0.9-0.9.3 -> libquvi-0.9-0.9.4.
+  * debian/control: Let libquvi-0.9-0.9.4 Breaks libquvi-0.9-0.9.3
+    to handle current condition on Ubuntu.
+
+ -- Boyuan Yang <byang@debian.org>  Fri, 03 Sep 2021 18:55:12 -0400
+
+libquvi (0.9.3-3) unstable; urgency=high
+
+  * QA upload.
+  * debian/patches/0005: Update patch to make the build reproducible.
+    (Closes: #834945)
+
+ -- Boyuan Yang <byang@debian.org>  Fri, 03 Sep 2021 21:39:37 -0400
+
+libquvi (0.9.3-2) unstable; urgency=high
+
+  * QA upload.
+  * Orphan package.
+  * debian/control: Set Vcs-* fields to git packaging repo on Salsa
+    GitLab platform.
+  * debian/control: Drop outdated versioned pre-depends on dpkg.
+  * debian/control: Use updated gcrypt dev package name
+    (libgcrypt20-dev) to avoid FTBFS.
+  * debian/patches:
+    + Refresh all patches.
+    + Add patch 0004 to fix FTBFS with autoconf 2.70.
+      (Closes: #978860)
+    + Add patch 0005 to make the build reproducible.
+      (see #834945, this patch is not enough)
+  * debian/: Apply "wrap-and-sort -abst".
+  * Refresh packaging:
+    + Bump debhelper compat to v13.
+    + Bump Standards-Version to 4.6.0.
+  * Drop unnecessary files: debian/compat, debian/source/options,
+    debian/source/lintian-overrides.
+
+ -- Boyuan Yang <byang@debian.org>  Fri, 03 Sep 2021 10:52:08 -0400
+
+libquvi (0.9.3-1.2) unstable; urgency=medium
+
+  [ Andreas Henriksson ]
+  * Non-maintainer upload with maintainer permission.
+    - import missing parts of old unstable branch to experimental branch.
+
+  [ Tim Lunn ]
+  * Merge missing debian revisions 0.4.1-2.1 and 0.4.1-3
+  * Drop lua-scripts-below-cwd.patch, no longer applies
+  * debian/rules: remove obsolete dh_auto_configure overrides
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 18 Feb 2016 17:55:44 +0100
+
+libquvi (0.9.3-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload with maintainer permission.
+  * Upload to unstable.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 18 Feb 2016 16:55:07 +0100
+
+libquvi (0.9.3-1) experimental; urgency=low
+
+  * New upstream release.
+  * libquvi is now licensed under AGPL-3+.
+  * Rename binary packages to libquvi-0.9-*.
+  * debian/watch: No longer follow 0.4.x.
+  * debian/control: Update (Build-)Depends.
+  * Remove old patches.
+  * Remove symbols file until there is a stable API.
+  * libquvi-0.9-dev.install: There is no longer a static library.
+  * libquvi-0.9-doc.install: Update location of doxygen documentation.
+  * Disable the searchengine in doxygen's HTML output to avoid an embedded
+    copy of jquery.js to be pulled in.
+    + new patch: doxygen.patch
+
+ -- Ansgar Burchardt <ansgar@debian.org>  Sun, 13 Oct 2013 16:04:10 +0200
+
+libquvi (0.4.1-3) unstable; urgency=medium
+
+  * Do not look for Lua helper scripts below current directory.
+    (Closes: #774555)
+    + new patch: lua-scripts-below-cwd.patch
+
+ -- Ansgar Burchardt <ansgar@debian.org>  Sun, 04 Jan 2015 12:52:34 +0100
+
+libquvi (0.4.1-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add build-dependency on pkg-config (Closes: #747798)
+  * Switch build-dependency from liblua5.1-0-dev to liblua5.2-dev
+  * Add debian/patches/lua52.patch
+    - make configure.ac check for lua5.2.pc
+  * Add Breaks: mpv (<< 0.3.10-2~) which uses both libquvi and lua5.1
+    - Alessandro Ghedini (ghedo@) will take care of fixing mpv
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 22 May 2014 15:56:20 +0200
+
+libquvi (0.4.1-2) unstable; urgency=low
+
+  * Use dh-autoreconf. This also updates config.{guess,sub} at build time.
+    Closes: #725832
+  * Apply upstream configure.ac changes for recent autotools.
+    + new patch: configure.ac-add-missing-AM-macros.patch
+  * Bumped Standards-Version to 3.9.4 (no changes).
+  * debian/watch: Also look for bzip2 and xz compressed tarballs.
+  * debian/watch: Follow 0.4.x for now.
+  * debian/watch: Add pgpsigurlmangle option to verify upstream signature.
+    The PGP key used is the one from the last releases. It was not verified
+    further.
+
+ -- Ansgar Burchardt <ansgar@debian.org>  Wed, 09 Oct 2013 09:20:03 +0200
+
+libquvi (0.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop dirname_from@Base from symbols file.
+
+ -- Ansgar Burchardt <ansgar@debian.org>  Wed, 25 Apr 2012 10:35:08 +0200
+
+libquvi (0.4.0-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Add myself to Uploaders.
+  * Bump Standards-Version to 3.9.3.
+    + Use copyright format 1.0 (no changes besides updated Format field).
+
+ -- Ansgar Burchardt <ansgar@debian.org>  Sat, 03 Mar 2012 23:31:07 +0100
+
+libquvi (0.4.0-1) experimental; urgency=low
+
+  [ Alejandro Garrido Mota ]
+  * New upstream release.
+    + Supports YouTube again. (Closes: #636591)
+    + Support for more YouTube URLs. (Closes: #615805)
+  * Lua scripts moved to libquvi-scripts. (Closes: #614384)
+  * Add multiarch support.
+  * d/control:
+     - Remove quvi package because upstream author split the project
+     - Add libquvi-scripts to (Build-)Depends.
+     - Add Vcs-* fields.
+  * d/copyright:
+     - Remove "share/*" entries.
+     - Change Format URL and Source URL.
+     - Adapt fields to properly revision.
+  * Rename and update symbol file from libquvi0.symbols to libquvi7.symbols.
+  * Rename libquvi0.install to libquvi7.install.
+  * Remove quvi.install
+  * Add lintian-override in source/lintian-overrides
+  * d/rules:
+     - Remove "--enable-nsfw" and add "--with-examples" argument
+     - Remove override_dh_auto_clean block
+     - Remove override_dh_auto_test: NO_INTERNET var is not used anymore.
+  * Change Architecture for libquvi-doc to all
+  * d/control: Add Vcs-* fields.
+  * d/watch: use of (\d.*) instead of (.*).
+
+  [ Ansgar Burchardt ]
+  * Build and install library documentation.
+    + debian/control: Add build-dep on naturaldocs.
+  * No longer include Makefile.* as examples in libquvi-doc.
+  * Use xz compression for source and binary packages.
+  * debian/control: Remove soname from libquvi-dev's description.
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Sun, 23 Oct 2011 22:44:43 -0430
+
+libquvi (0.2.15-1) unstable; urgency=low
+
+  * New upstream release (Closes: #622253).
+  * Update d/watch to sf.net
+  * Update homepage field to quvi.sourceforge.net (Closes: #615554)
+  * d/rules: Add dh_auto_test before NO_INTERNET=1 in override_dh_auto_test
+  * Update Standards-Version field to 3.9.2
+  * Add symbol (d/libquvi0.symbols) file.
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Mon, 25 Apr 2011 01:07:41 -0430
+
+libquvi (0.2.11-1) unstable; urgency=low
+
+  * New upstream release (Closes: #607122, #606716).
+  * d/control: Remove PCRE dependency and replace "libcurl4-dev" by
+    "libcurl4-gnutls-dev | libcurl4-dev"
+  * d/copyright: Update package license to LGPLv2.1+ and change lib/strepl.c
+    entry to "PD" (public domain).
+  * d/rules: Add override_dh_installchangelogs to install NEWS file
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Wed, 15 Dec 2010 20:21:34 -0430
+
+libquvi (0.2.8-1) unstable; urgency=low
+
+  * New upstream release (Closes: #590328).
+  * Upstream release drops the --enable-smut option, use
+    "--enable-nsfw" (Closes: #599587)
+  * Remove d/libquvi0.docs file (It only had TODO file)
+  * Remove Moritz's patch, was fixed in the last release.
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Wed, 24 Nov 2010 23:35:43 -0430
+
+libquvi (0.2.0-1.2) unstable; urgency=low
+
+   * Non-maintainer upload.
+   * Add 595487.patch thanks to Jonas Smedegaard (Closes: #595487).
+
+ -- Martijn van Brummelen <martijn@brumit.nl>  Fri, 17 Sep 2010 11:07:44 +0200
+
+libquvi (0.2.0-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Update Youtube support (Closes: #589976)
+
+ -- Moritz Muehlenhoff <jmm@debian.org>  Thu, 05 Aug 2010 11:50:07 -0400
+
+libquvi (0.2.0-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Sun, 16 May 2010 12:12:51 -0430
+
+libquvi (0.1.4-2) unstable; urgency=low
+
+  * d/libquvi-dev.install:
+       Include the header and pkg-config files in libquvi-dev, which are
+       necessary to build cclive. (Thanks to Stanley Pinchak).
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Thu, 08 Apr 2010 21:49:18 -0430
+
+libquvi (0.1.4-1) unstable; urgency=low
+
+  * Initial release (Closes: #575888).
+
+ -- Alejandro Garrido Mota <garridomota@gmail.com>  Tue, 09 Feb 2010 21:13:37 -0430

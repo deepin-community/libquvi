@@ -1,0 +1,5 @@
+usr/include
+usr/lib/*/libquvi-0.9.so
+usr/lib/*/pkgconfig/*.pc
+usr/share/man/man3/libquvi.3
+usr/share/man/man7/quvi-object.7

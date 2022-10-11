@@ -1,0 +1,22 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Fri, 3 Sep 2021 10:38:20 -0400
+Subject: Modernize configure.ac
+
+Avoid some (re)configure warnings.
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 350d89d..da8e61c 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -37,7 +37,7 @@ AC_DEFINE_UNQUOTED([CANONICAL_HOST], "$host",
+ # GNU Automake 1.13 spews a warning about AM_GNU_GETTEXT (0.18.1,
+ # 0.18.2) using the deprecated AM_PROG_MKDIR_P macro. Do not specify
+ # '-Werror` in the options to work around this.
+-AM_INIT_AUTOMAKE([1.11.1 -Wall dist-xz no-dist-gzip tar-ustar])
++AM_INIT_AUTOMAKE([1.11.1 -Wall dist-xz no-dist-gzip tar-ustar subdir-objects])
+ AM_SILENT_RULES([yes])
+ 
+ # GNU Automake 1.12 requires this macro. Earlier versions do not

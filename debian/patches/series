@@ -1,0 +1,5 @@
+doxygen.patch
+lua52.patch
+0003-Modernize-configure.ac.patch
+0004-Fix-FTBFS-with-autoconf-2.70.patch
+0005-Make-the-build-reproducible.patch

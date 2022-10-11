@@ -1,0 +1,21 @@
+From: Debian QA Group <packages@qa.debian.org>
+Date: Fri, 3 Sep 2021 10:34:19 -0400
+Subject: lua52
+
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index ac84b29..350d89d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -84,7 +84,7 @@ AC_SUBST([VALGRIND])
+ # Checks for libraries.
+ PKG_CHECK_MODULES([liblua], [lua >= 5.1], [], [
+   PKG_CHECK_MODULES([liblua], [lua51 >= 5.1], [], [
+-    PKG_CHECK_MODULES([liblua], [lua5.1 >= 5.1], [], [
++    PKG_CHECK_MODULES([liblua], [lua5.2 >= 5.1], [], [
+       PKG_CHECK_MODULES(liblua, [lua-5.1 >= 5.1])])
+   ])
+ ])

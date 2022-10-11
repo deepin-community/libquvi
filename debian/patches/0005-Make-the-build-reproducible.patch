@@ -1,0 +1,48 @@
+From: Chris Lamb <lamby@debian.org>
+Date: Sat, 20 Aug 2016 20:55:08 +0100
+Subject: Make the build reproducible
+
+Last-Update: 2021-09-09
+Bug-Debian: https://bugs.debian.org/834945
+---
+ configure.ac        | 6 ++++--
+ doc/dox/Doxyfile.in | 2 +-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 3010a3b..683a49a 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -57,7 +57,9 @@ LT_PREREQ([2.2.6])
+ AC_PROG_CC
+ AM_PROG_CC_C_O
+ 
+-AC_DEFINE_UNQUOTED([CFLAGS], "$CFLAGS", [Define to compiler flags])
++PWD=`pwd`
++FILTERED_CFLAGS=`echo $CFLAGS | sed -e "s@$PWD@«BUILDDIR»@g"`
++AC_DEFINE_UNQUOTED([CFLAGS], "$FILTERED_CFLAGS", [Define to compiler flags])
+ AC_DEFINE_UNQUOTED([CC], "$CC", [Define to compiler])
+ 
+ AC_PATH_PROG([DOXYGEN], [doxygen], [no])
+@@ -71,7 +73,7 @@ AS_IF([test x"$A2X" = "xno" && test -d "$srcdir/.git"],
+   AC_MSG_ERROR([a2x is required to create man pages when building from git])])
+ 
+ AC_PATH_PROG([DATE], [date], [no])
+-AS_IF([test x"$DATE" != "xno"], [build_time=`$DATE +"%F %T %z"`])
++AS_IF([test x"$DATE" != "xno" && test x"$SOURCE_DATE_EPOCH" = "x" ], [build_time=`$DATE +"%F %T %z"`])
+ AC_DEFINE_UNQUOTED([BUILD_TIME], ["$build_time"], [We have build time])
+ 
+ BUILD_TIME="$build_time"
+diff --git a/doc/dox/Doxyfile.in b/doc/dox/Doxyfile.in
+index d29cb6e..5c20b73 100644
+--- a/doc/dox/Doxyfile.in
++++ b/doc/dox/Doxyfile.in
+@@ -14,7 +14,7 @@ REPEAT_BRIEF           = YES
+ ABBREVIATE_BRIEF       =
+ ALWAYS_DETAILED_SEC    = NO
+ INLINE_INHERITED_MEMB  = NO
+-FULL_PATH_NAMES        = YES
++FULL_PATH_NAMES        = NO
+ STRIP_FROM_PATH        =
+ STRIP_FROM_INC_PATH    =
+ SHORT_NAMES            = NO
